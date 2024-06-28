@@ -1,0 +1,12 @@
+{% extends "main/layout.html" %}
+
+{% block title %}About Us{% endblock title %}
+{% block header %}About Us page{% endblock header %}
+
+{% block body %}
+    {% lorem 3 b random %}
+    <button>
+        <a href="{% url 'home' %}">Go to home</a>
+    </button>
+{% endblock body %}
+

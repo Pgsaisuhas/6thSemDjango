@@ -1,0 +1,14 @@
+{% extends "main/layout.html" %}
+
+
+{% block title %}
+Home 
+{% endblock title %}
+
+{% block header %}
+<ul>
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'about-us' %}">About</a></li>
+    <li><a href="{% url 'contact-us' %}">Contact</a></li>
+</ul>
+{% endblock header %} 

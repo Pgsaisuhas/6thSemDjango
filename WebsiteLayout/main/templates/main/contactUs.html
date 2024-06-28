@@ -1,0 +1,17 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Contact Us{% endblock title %}
+
+{% block header %}Contact Us page{% endblock header %}
+
+{% block body %}
+    <ul>
+    {% for contact in contacts %}
+        <li>{{contact}}</li>
+    {% endfor %}
+    </ul>
+    <button>
+        <a href="{% url 'home' %}">Go to home</a>
+    </button>
+{% endblock body %}
+
