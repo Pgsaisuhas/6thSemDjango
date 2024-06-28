@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import currentDateTime
+from .views import currentDateTime, beforeCurrentAfter
 
 
 urlpatterns = [
-    path('', currentDateTime, name="cdt"),
+    path('cdt/', currentDateTime, name="cdt"),
+    path('', beforeCurrentAfter, name="bca")
 ]

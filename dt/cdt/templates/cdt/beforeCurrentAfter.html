@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Date and Time</title>
+</head>
+<body>
+    <h1>Current Date and Time is:</h1>
+    <p>Date: {{ formatted_date }} </p>
+    <p>Time 4 hours ago: <span id="time_before">{{ formatted_before }}</span> </p>
+    <p>Time now: <span id="time_now">{{ formatted_now }}</span> </p>
+    <p>Time 4 hours after: <span id="time_after">{{ formatted_after }}</span> </p>
+    {% comment %} *
+    * this part can be ignored!!, this is just to make the application look more intuitive 
+    * {% endcomment %}
+    <script>
+        function updateTime() {
+            var now = new Date();
+            var before = new Date(now.getTime() - 4 * 60 * 60 * 1000);
+            var after = new Date(now.getTime() + 4 * 60 * 60 * 1000);
+
+            document.getElementById('time_now').innerText = now.toLocaleTimeString();
+            document.getElementById('time_before').innerText = before.toLocaleTimeString();
+            document.getElementById('time_after').innerText = after.toLocaleTimeString();
+        }
+
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
