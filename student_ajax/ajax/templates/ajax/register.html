@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<body>
+    <form id="enrollmentForm" method="post">
+        {% csrf_token %}
+        <select name="s_name" id="s_name">
+            {% for student in students %}
+                <option value="{{ student.id }}"> {{ student.student_name }}</option>
+            {% endfor %}
+        </select>
+        <br />
+        <select name="c_name" id="c_name">
+            {% for course in courses %}
+                <option value="{{ course.id }}">{{ course.course_name }}</option>
+            {% endfor %}
+        </select>
+        <br />
+        <span id="ans"></span>
+        <input type="button" value="Enroll" id="ebtn">
+    </form>
+
+    <button><a href="{% url "enrollments" %}">go to list of enrollments</a></button>
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script>
+            $(document).ready(function(){
+
+            $("#ebtn").click(function(event){
+                event.preventDefault();
+                
+                var s_name = $("#s_name").val();
+                var c_name = $("#c_name").val();
+                var csrfToken = $("input[name='csrfmiddlewaretoken']").val();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '/register/',
+                    data: {
+                        s_name: s_name,
+                        c_name: c_name,
+                        csrfmiddlewaretoken: csrfToken
+                    },
+                    success: function(response){
+                        $("#ans").html(response.message);
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
+                    },
+                    error: function(xhr, status, error){
+                        console.error("Error: " + error);
+                        $("#ans").html("An error occurred: " + xhr.responseText);
+                    }
+                });
+            });
+
+            
+        });
+    </script>
+</body>
+</html>
