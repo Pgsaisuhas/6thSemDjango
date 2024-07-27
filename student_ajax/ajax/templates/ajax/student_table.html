@@ -1,0 +1,12 @@
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Subjects</th>
+    </tr>
+    {% for enrollment in enrollments %}
+        <tr>
+            <td>{{enrollment.student_name}}</td>
+            <td>{{enrollment.courses}}</td>
+        </tr>
+    {% endfor %}
+</table>

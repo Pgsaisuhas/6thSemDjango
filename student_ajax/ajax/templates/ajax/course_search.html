@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+</head>
+<body>
+    Courses:
+    <form action="" method="POST">
+        {% csrf_token %}
+        <select name="c_name" id="c_name">
+            {% for course in courses %}
+                <option value="{{course.id}}">{{ course.course_name }}</option>
+            {% endfor %}
+        </select>
+        <input type="button" value="Search" id="sbtn">
+        <span  id="result"></span>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#sbtn').click(function(e){
+                e.preventDefault();
+                var course_name = $("#c_name").val();
+                $.ajax({
+                    url:"/course-search/",
+                    type: "POST",
+                    data: {
+                        c_name: course_name,
+                        csrfmiddlewaretoken: "{{csrf_token}}"
+                    },
+                    success: function(response){
+                       // console.log(response);
+                        $("#result").html(response);
+                    },
+                    error: function(error){
+                        $("#results").html(error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

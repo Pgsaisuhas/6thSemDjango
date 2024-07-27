@@ -1,0 +1,25 @@
+<html>
+<style type="text/css">
+#i1 {background-color: lightgreen;color:brown;display:table}
+#i2 {background-color: black;color:yellow}
+</style>
+<body>
+<h1 id="i1">Student Names</h1>
+<table>
+<tr>
+<th>Student Name</th>
+<th>Student USN</th>
+<th>student Course</th>
+</tr>
+{% for s in student_list %}
+<tr>
+<td> {{ s.student_name }} </td>
+
+<td> {{ s.student_usn }} </td>
+
+<td> {{ s.student_sem }} </td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
